@@ -1,0 +1,7 @@
+{
+  "name": "classChat",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
