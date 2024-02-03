@@ -1,7 +1,8 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Blank
+      <p class="display-3">Osztaly Chat</p>
+      <!--Androidos resz-->
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -9,12 +10,50 @@
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
+      <ion-title size="large">IOS Chat</ion-title>
+      <!--Ios resz-->
     </ion-toolbar>
   </ion-header>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+  <div>
+    
+    <div class="row"   *ngFor="let message of messages">
+      <div class="col" [ngClass]="message.user !== userName ? 'd-flex justify-content-end' : ''">
+        <ion-list>
+        <ion-item>{{message.user}} {{message.time}}</ion-item>
+      <ng-container *ngIf="message.user !== userName; else en">
+      <ion-item>{{message.message}}</ion-item>
+    </ng-container>
+      <ng-template #en>
+        <div class="ms-3">
+          <ion-textarea [(ngModel)]="message.message" labelPlacement="floating">
+          </ion-textarea>
+          <ion-button size="small" (click)="updateMessage(message)">Mentes</ion-button>
+          <ion-button size="small" (click)="deleteMessage(message)">Torles</ion-button>
+
+        </div>
+      </ng-template>
+    </ion-list>
+      </div>
+    </div>
+    
+      <ion-list>
+<div class="ms-3">
+  
+    <ion-textarea [(ngModel)]="newMessage" labelPlacement="floating">
+      <div slot="label">Uzenet <ion-text color="danger">(Required)</ion-text></div>
+    </ion-textarea>
+  
+</div>
+        <ion-item>
+          <ion-button (click)="addMessage()">Kuldes</ion-button>
+        </ion-item>
+      </ion-list>
+   
+  
   </div>
 </ion-content>
+<ion-footer>
+  <ion-title> Super Chat 2024 </ion-title>
+</ion-footer>
+

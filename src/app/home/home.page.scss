@@ -1,6 +1,6 @@
 #container {
   text-align: center;
-
+  color: white;
   position: absolute;
   left: 0;
   right: 0;
@@ -24,4 +24,12 @@
 
 #container a {
   text-decoration: none;
+}
+
+.jobb {
+  float: right;
+}
+
+.textColor {
+  color: white !important;
 }
