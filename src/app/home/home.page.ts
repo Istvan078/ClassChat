@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { BaseService } from '../base.service';
 import { map } from 'rxjs';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-home',
@@ -10,9 +11,10 @@ import { map } from 'rxjs';
 export class HomePage {
   messages: any
   newMessage: any
-  userName = 'Istvan'
+  userName = ''
 
-  constructor(private base: BaseService) {
+
+  constructor(private base: BaseService, private auth: AuthService) {
     this.base.getMessages().snapshotChanges().pipe(
       map(
         changes => changes.map(
@@ -21,6 +23,12 @@ export class HomePage {
       )
     ).subscribe(
       (messages) => this.messages = messages
+    )
+    this.auth.getUser().subscribe(
+      (user) => {
+        console.log(user)
+        if(user) this.userName = user.displayName
+      }
     )
   }
 
@@ -44,6 +52,10 @@ export class HomePage {
 
   deleteMessage(message: any) {
     this.base.deleteMessage(message)
+  }
+
+  logout() {
+    this.auth.logOut()
   }
 
 }

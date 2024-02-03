@@ -16,6 +16,9 @@
   </ion-header>
 
   <div>
+    <ion-item>
+      <ion-button (click)="logout()" shape="round">Kijelentkezés</ion-button>
+    </ion-item>
     
     <div class="row"   *ngFor="let message of messages">
       <div class="col" [ngClass]="message.user !== userName ? 'd-flex justify-content-end' : ''">
